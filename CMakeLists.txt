@@ -76,11 +76,11 @@ set(MUMLIB2_SOURCES
     src/audio_encoder.cpp
     src/audio_packet.cpp
     src/crypto_state.cpp
-    src/logger.cpp
+    src/Logger.cpp
     src/mumlib2.cpp
     src/mumlib2_private.cpp
-    src/transport.cpp
-    src/varint.cpp
+    src/Transport.cpp
+    src/VarInt.cpp
 )
 
 set(MUMLIB2_HEADERS

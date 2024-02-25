@@ -1,5 +1,6 @@
 //stdlib
 #include <array>
+#include <chrono>
 
 //mumlib
 #include "mumlib2/constants.h"
@@ -121,7 +122,7 @@ namespace mumlib2 {
             reset();
         }
 
-        _sequence_timestemp = std::chrono::steady_clock::now();
+        _sequence_timestemp = std::chrono::high_resolution_clock::now();
 
         return encoded;
     }

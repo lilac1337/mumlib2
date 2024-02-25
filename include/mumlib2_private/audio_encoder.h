@@ -46,7 +46,7 @@ namespace mumlib2 {
         
         uint32_t _channels = 0;
 
-        std::chrono::time_point<std::chrono::steady_clock> _sequence_timestemp;
+        std::chrono::high_resolution_clock::time_point _sequence_timestemp;
         uint32_t _sequence_number = 0;
 
     private:

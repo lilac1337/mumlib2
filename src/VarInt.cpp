@@ -136,14 +136,14 @@ namespace mumlib2 {
 
         //32 bit positive (111100__ + int)
         if ((buf[0] & 0b1111'1100) == 0b1111'0000) {
-            _val = _byteswap_uint64(*reinterpret_cast<const int32_t*>(buf + 1));
+            _val = __builtin_bswap64((uint64_t)*reinterpret_cast<const int32_t*>(buf + 1));
             _size = 5;
             return;
         }
 
         //64 bit positive (111100__ + int64)
         if ((buf[0] & 0b1111'1100) == 0b1111'0100) {
-            _val = _byteswap_uint64(*reinterpret_cast<const int64_t*>(buf + 1));
+            _val = __builtin_bswap64((uint64_t)*reinterpret_cast<const int64_t*>(buf + 1));
             _size = 9;
             return;
         }

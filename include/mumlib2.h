@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <memory>
 
 //mumlib
 #include "mumlib2/callback.h"

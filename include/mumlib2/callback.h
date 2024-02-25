@@ -9,7 +9,7 @@
 #include <vector>
 
 //mumlib2
-#include "mumlib2/Export.h"
+#include "mumlib2/export.h"
 
 namespace mumlib2 {
 
