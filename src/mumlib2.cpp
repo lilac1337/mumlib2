@@ -154,6 +154,10 @@ namespace mumlib2 {
         impl->UserSendState(field, val);
     }
 
+	void Mumlib2::requestUserStats(uint32_t user_id, bool stats_only) {
+		impl->RequestUserStats(user_id, stats_only);
+	}
+	
     int Mumlib2::getChannelIdBy(string name) {
         return impl->ChannelFind(name);
     }

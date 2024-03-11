@@ -5,6 +5,7 @@
 
 //stdlib
 #include <chrono>
+#include <cstdint>
 #include <memory>
 #include <optional>
 #include <string>
@@ -63,6 +64,7 @@ namespace mumlib2 {
         bool UserMute(int32_t user_id, bool mute_state);
         bool UserSendState(UserState field, const std::string& val);
         bool UserSendState(UserState field, bool val);
+		bool RequestUserStats(uint32_t user_id, bool stats_only = false);
 
         //Voicetarget
         bool VoicetargetSet(int targetId, VoiceTargetType type, int id);
@@ -87,6 +89,7 @@ namespace mumlib2 {
         bool processControlChannelremovePacket(const uint8_t* buffer, int length);
         bool processControlChannelstatePacket(const uint8_t* buffer, int length);
         bool processControlCodecVersionPacket(const uint8_t* buffer, int length);
+		bool processControlUserStats(const uint8_t* buffer, int length);
         bool processControlPermissionQueryPacket(const uint8_t* buffer, int length);
         bool processControlTextMessagePacket(const uint8_t* buffer, int length);
         bool processControlVersionPacket(const uint8_t* buffer, int length);

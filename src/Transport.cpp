@@ -323,10 +323,10 @@ namespace mumlib2 {
 				size_t remaining = wholeMessageLength - bytesTransferred;
 				remaining = std::max(remaining, (size_t)0);
 
-				if (wholeMessageLength > MUMBLE_TCP_MAXLENGTH) {
+/*				if (wholeMessageLength > MUMBLE_TCP_MAXLENGTH) {
 					throwTransportException(
 						std::string("message bigger than max allowed size:") + std::to_string(wholeMessageLength) + "/" + std::to_string(MUMBLE_TCP_MAXLENGTH));
-				}
+                        }*/
 
 				return remaining;
 			},

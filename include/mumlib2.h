@@ -79,6 +79,8 @@ namespace mumlib2 {
 
         void sendUserState(UserState state, std::string value);
 
+		void requestUserStats(uint32_t user_id, bool stats_only = false);
+		
         bool isSessionIdValid(int sessionId);
     private:
         std::unique_ptr<Mumlib2Private> impl;

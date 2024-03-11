@@ -2,6 +2,7 @@
 // Copyright (c) 2015-2022 mumlib2 contributors
 
 //mumlib
+#include "mumble.pb.h"
 #include "mumlib2/constants.h"
 #include "mumlib2/exceptions.h"
 #include "mumlib2_private/mumlib2_private.h"
@@ -227,8 +228,7 @@ namespace mumlib2 {
         case MessageType::CODECVERSION:
             return processControlCodecVersionPacket(buffer, length);
         case MessageType::USERSTATS:
-            _logger.warn("Mumlib2Private::processControlPacket() -> USERSTATS not implemented");
-            break;
+            return processControlUserStats(buffer, length);
         case MessageType::REQUESTBLOB:
             _logger.warn("Mumlib2Private::processControlPacket() -> REQUESTBLOB not implemented");
             break;
@@ -345,6 +345,19 @@ namespace mumlib2 {
         _callback.codecVersion(alpha, beta, prefer_alpha, opus);
 
         return true;
+    }
+
+    bool Mumlib2Private::processControlUserStats(const uint8_t *buffer,int length) {
+		MumbleProto::UserStats userStats;
+		userStats.ParseFromArray(buffer, length);
+
+        uint32_t sessionId = userStats.session();
+		uint32_t onlineSecs = userStats.onlinesecs();
+        uint32_t idleSecs = userStats.idlesecs();
+
+        _callback.userStats(sessionId, onlineSecs, idleSecs);
+		
+		return true;
     }
 
     bool Mumlib2Private::processControlPermissionQueryPacket(const uint8_t* buffer, int length)
@@ -710,6 +723,15 @@ namespace mumlib2 {
 
         return true;
     }
+
+	bool Mumlib2Private::RequestUserStats(uint32_t user_id, bool stats_only) {
+		MumbleProto::UserStats userStats;
+
+		userStats.set_session(user_id);
+		userStats.set_stats_only(stats_only);
+
+		return transportSendControl(MessageType::USERSTATS, userStats);
+	}
 
     //
     // Session

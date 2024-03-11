@@ -151,5 +151,11 @@ namespace mumlib2 {
                 uint32_t positional,
                 uint32_t push_to_talk) { };
 
+		virtual void userStats(
+            uint32_t sessionId,
+			uint32_t onlinesecs,
+            uint32_t idlesecs
+			) { };
+
     };
 }
