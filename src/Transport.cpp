@@ -518,7 +518,7 @@ namespace mumlib2 {
 
 		const int length = sizeof(type_network) + sizeof(size_network) + size;
 
-		uint8_t buff[MUMBLE_UDP_MAXLENGTH];
+		uint8_t* buff = (uint8_t*) malloc(length);
 
 		memcpy(buff, &type_network, sizeof(type_network));
 
@@ -527,6 +527,7 @@ namespace mumlib2 {
 		message.SerializeToArray(buff + sizeof(type_network) + sizeof(size_network), size);
 
 		sendSsl(buff, length);
+    free(buff);
 	}
 
 	void Transport::throwTransportException(std::string message) {
